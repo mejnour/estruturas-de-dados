@@ -25,56 +25,60 @@ class Stack:
         self.items.pop()
         self.size -= 1
 
-aux1 = []
-str = []        
+str1 = []        
 qtd = input()
 
 # Quantidade de testes
 for i in range(int(qtd)):
     aux2 = input()
-    length = len(aux2)
+    length = len(aux2) + 1
     
     # Loop para cada teste
     pilha = Stack()
     x = 0
-    for j in range(length):
-        # Quando é 0, é mais seguro deixar ciclar
-        if j == 0:
-            continue
-        
+    aux1 = []
+    for j in range(1, length):
+        # Quando é 0, é mais seguro deixar ciclar        
         if aux2[x:j] == '(':
             pilha.push('(')
-            continue
             
         elif aux2[x:j].isalpha():
             aux1.append(aux2[x:j])
-            continue
             
-        elif aux2[x:j] == '*' or aux2[x:j] == '/' or aux2[x:j] == '^':
+        elif aux2[x:j] == '^':
             
-            while pilha.peek() == '*' or aux2[x:j] == '/' or aux2[x:j] == '^':
+            while pilha.peek() == '^':
+                aux1.append(pilha.pop())
+                
+            pilha.push(aux2[x:j])
+            
+        elif aux2[x:j] == '*' or aux2[x:j] == '/':
+            
+            while pilha.peek() == '*' or pilha.peek() == '/' or pilha.peek() == '^':
                 aux1.append(pilha.pop())
             
             pilha.push(aux2[x:j])
-            continue
             
         elif aux2[x:j] == '+' or aux2[x:j] == '-':
         
             while pilha.peek() != '(':
                 aux1.append(pilha.pop())
-            continue
+                
+            pilha.push(aux2[x:j])
             
         elif aux2[x:j] == ')':
-            
+
             while pilha.peek() != '(':
-                aux1.append(pilha.pop())
+                aux3 = pilha.peek()
+                aux1.append(aux3)
+                pilha.pop()
                 
             pilha.pop()
             
-        for x in aux1:
-            print(x)
-        str.append(''.join(aux1))
         x += 1
+    
+    str1.append(''.join(aux1))
+    str1.append('')
         
-for k in str:
+for k in str1:
     print(k)
