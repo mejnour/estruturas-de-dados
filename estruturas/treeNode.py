@@ -1,3 +1,4 @@
+#encoding: utf-8
 # A definição de classe é assim mesmo
 # class <Nome>:
 class BinaryTree:
@@ -47,9 +48,24 @@ class BinaryTree:
 
 # Função externa de caminhamento
 def preorder(tree):
-    print(tree.getRootVal())
-    preorder(tree.getLeftChild())
-    preorder(tree.getRightChild())
+    if tree:
+        print(tree.getRootVal())
+        preorder(tree.getLeftChild())
+        preorder(tree.getRightChild())
+
+
+def postorder(tree):
+    if tree:
+        postorder(tree.getLeftChild())
+        postorder(tree.getRightChild())
+        print(tree.getRootVal())
+
+
+def inorder(tree):
+  if tree != None:
+      inorder(tree.getLeftChild())
+      print(tree.getRootVal())
+      inorder(tree.getRightChild())
 
 
 # Não existe 'main' em python. Tudo é 'main'
@@ -57,16 +73,20 @@ def preorder(tree):
 # em um hipotetico 'main'
 # Manipulações
 r = BinaryTree('a')
-print(r.getRootVal())
+# print(r.getRootVal())
 
-print(r.getLeftChild())
+# print(r.getLeftChild())
 r.insertLeft('b')
-print(r.getLeftChild())
-print(r.getLeftChild().getRootVal())
+# print(r.getLeftChild())
+# print(r.getLeftChild().getRootVal())
 
 r.insertRight('c')
-print(r.getRightChild())
-print(r.getRightChild().getRootVal())
-
+# print(r.getRightChild())
+# print(r.getRightChild().getRootVal())
+#
 r.getRightChild().setRootVal('hello')
-print(r.getRightChild().getRootVal())
+# print(r.getRightChild().getRootVal())
+
+# postorder(r)
+# preorder(r)
+# inorder(r)
