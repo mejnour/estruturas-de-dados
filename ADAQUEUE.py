@@ -61,10 +61,10 @@ def processa(ops):
     para = len(ops)
     index = 0
     while para > 0:
-        try:
-            le(ops[index])
-        except:
-            return 0
+        # try:
+        le(ops[index])
+        # except:
+        #     return 0
         index += 1
         para -= 1
 
